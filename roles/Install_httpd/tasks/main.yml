@@ -1,0 +1,4 @@
+---
+- name: "Start Install NGINX"
+  import_tasks: setup_httpd.yml
+

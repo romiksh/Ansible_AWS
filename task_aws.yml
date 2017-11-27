@@ -1,0 +1,12 @@
+---
+- hosts : 127.0.0.1
+  connection : local
+  strategy: debug
+  gather_facts : False
+
+  roles:
+     - Create_EC2
+
+- hosts : "{{env}}"
+  roles:
+     - Install_httpd
