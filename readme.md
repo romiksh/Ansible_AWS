@@ -4,4 +4,4 @@ Install: **pip install ansible**
 
 To start:
 
-ANSIBLE_CONFIG=./config/ansible.cfg /usr/local/bin/ansible-playbook --vault-id ~/passwd/ansible-passwd task_aws.yml -vvv
+ANSIBLE_CONFIG=./config/ansible.cfg /usr/local/bin/ansible-playbook -e 'env=AnsibleAWSNginx' task_aws.yml
