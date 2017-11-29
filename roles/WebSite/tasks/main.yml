@@ -1,6 +1,0 @@
----
-- name: "Extract WebSite to Host"
-  unarchive:
-    src: ../../data/site.zip
-    dest: /var/www/html
-  become: true
