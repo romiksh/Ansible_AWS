@@ -1,9 +1,9 @@
 ---
+- name: Start IAM Role
+  import_tasks: iam_role.yml
 - name: Start Firewall
   import_tasks: firewall.yml
 - name: Start KEY
   import_tasks: key_ec2.yml
 - name: Start Setup  EC2
   import_tasks: setup_ec2.yml
-#- name: TEST
-#  import_tasks: test_hosts.yml

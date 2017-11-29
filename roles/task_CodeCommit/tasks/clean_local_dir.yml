@@ -1,0 +1,6 @@
+---
+ - name: "Clean repo path"
+   file:
+    state: absent
+    path: "{{ path }}/{{repo_name}}"
+   delegate_to: localhost

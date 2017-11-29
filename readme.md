@@ -4,4 +4,4 @@ Install: **pip install ansible**
 
 To start:
 
-ANSIBLE_CONFIG=./config/ansible.cfg /usr/local/bin/ansible-playbook -e 'env=AnsibleAWSNginx' task_aws.yml
+ANSIBLE_CONFIG=./config/ansible.cfg /usr/local/bin/ansible-playbook -e 'env=AnsibleAWS-web' task_aws.yml

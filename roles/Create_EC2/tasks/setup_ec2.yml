@@ -8,6 +8,7 @@
       aws_secret_key : "{{ ec2_secret_key }}"
       image : "{{ ami_id }}"
       region: "{{ region }}"
+      instance_profile_name: "{{ iam_name }}"
       wait : true
       instance_tags :
          Env: "{{ env }}"
@@ -16,29 +17,15 @@
       exact_count: 1
       count_tag:
          Env: "{{ env }}"
-         Name: "{{ ins_name }}-web-01"
+         Name: "{{ ins_name }}"
    register : ec2
 
- - name: "Add group to host group"
-   vars:
-     ll: "[ {{ ec2_group }} ]"
-   lineinfile: dest={{ hostpath }}
-               line="[{{env}}]"
-
- - name: "Add the newly created EC2 instance(s) to host group"
-   vars:
-     ll: "[ {{ ec2_group }} ]"
-   lineinfile: dest={{ hostpath }}
-               regexp={{ item.public_ip }}
-               insertafter="[{{env}}]"
-               line="{{ item.public_ip }} {{hoststring}}"
-               state=present
+ - name: "Add Host to temp hosts"
+   add_host:
+     hostname: "{{ ins_name }}-web"
+     ansible_host: "{{ item.public_ip }}"
+     ansible_port: 22
    with_items: "{{ ec2.instances }}"
-
- - name: "Refresh in-memory inventory cache"
-   meta: refresh_inventory
-
- - wait_for: path={{ hostpath }} search_regex={{hoststring}}
 
  - name: "Wait for SSH to come up"
    local_action: wait_for

@@ -1,0 +1,8 @@
+---
+ - name: "Copy Script"
+   template:
+     src: script.j2
+     dest: /home/{{app_code_user}}/setup_aws_codedeploy.sh
+     mode: 0744
+ - name: "Run script"
+   shell: /home/{{app_code_user}}/setup_aws_codedeploy.sh

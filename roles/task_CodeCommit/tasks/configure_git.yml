@@ -1,0 +1,12 @@
+---
+ - name: "Configure GIT"
+   git_config:
+     name: credential.helper
+     scope: global
+     value: "!aws codecommit credential-helper $@"
+   delegate_to: localhost
+ - git_config:
+     name: credential.UseHttpPath
+     scope: global
+     value: true
+   delegate_to: localhost

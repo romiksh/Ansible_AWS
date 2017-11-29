@@ -1,0 +1,17 @@
+---
+- name: Start Create Repository
+  import_tasks: create_repo.yml
+- name: Start Configure GIT
+  import_tasks: configure_git.yml
+- name: Start Clone GIT
+  import_tasks: clone_repo.yml
+- name: Start Push GIT
+  import_tasks: push_repo.yml
+- name: Start NewPage
+  import_tasks: newpage_repo.yml
+
+- name: Start Add AppSpec
+  import_tasks: add_appspec.yml
+
+- name: Start Clean dir
+  import_tasks: clean_local_dir.yml

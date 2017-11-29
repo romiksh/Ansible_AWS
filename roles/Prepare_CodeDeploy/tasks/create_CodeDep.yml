@@ -1,0 +1,10 @@
+---
+- name: "Create DeployApp"
+  codedeploy:
+      aws_access_key : "{{ access_key }}"
+      aws_secret_key : "{{ secret_key }}"
+      region: "{{ region }}"
+      cd_name: "{{ CodeDeploy_APP }}"
+      cd_goup_name: "{{ CodeDeploy_APP }}group"
+      ec2_name: "{{ ins_name }}"
+      iam_name: "{{ iam_name }}"

@@ -1,0 +1,7 @@
+---
+- name: "Start Install Code Deploy Agent"
+  import_tasks: copy_script.yml
+
+- name: "Running service"
+  import_tasks: running_service.yml
+

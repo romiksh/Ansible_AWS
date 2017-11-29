@@ -1,0 +1,7 @@
+---
+- name: "Create S3 Bucket"
+  s3_bucket:
+      aws_access_key : "{{ access_key }}"
+      aws_secret_key : "{{ secret_key }}"
+      name: "{{ s3bucket_name }}"
+      region: "{{ region }}"

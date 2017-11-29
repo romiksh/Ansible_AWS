@@ -1,0 +1,22 @@
+---
+ - name: "Clone Repo"
+#   git:
+#     repo: "{{ CodeComm.meta.repositoryMetadata.cloneUrlHttp }}"
+#     repo: "https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/MyTestRepo"
+#     dest: "{{ path }}/{{repo_name}}"
+#     refspec: '+refs/pull/*:refs/heads/*'
+#     clone: no
+
+   shell: |
+      cd {{ path }}
+      git clone {{ CodeComm.meta.repositoryMetadata.cloneUrlHttp }}
+      cd ..
+   args:
+      executable: /bin/bash
+   delegate_to: localhost
+
+# - name: Clean repo path
+#   file:
+#    state: absent
+#    path: "{{ path }}/{{repo_name}}"
+#   delegate_to: localhost

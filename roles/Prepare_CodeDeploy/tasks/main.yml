@@ -1,0 +1,12 @@
+---
+- name: Start IAM Role
+  import_tasks: iam_role.yml
+
+- name: Start S3 bucket
+  import_tasks: create_bucket.yml
+
+- name: Start CodeDeploy
+  import_tasks: create_CodeDep.yml
+
+- name: Start JenkinsJob
+  import_tasks: create_jenkins_job.yml

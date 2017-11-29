@@ -1,0 +1,69 @@
+---
+
+
+- hosts : 127.0.0.1
+  connection : local
+#  strategy: debug
+  gather_facts : False
+  vars:
+    access_key : AKIAIZZC7VIZS46XCRSQ
+    secret_key: !vault |
+            $ANSIBLE_VAULT;1.1;AES256
+            34613837383865343939333264626462656464643966613035383161663265633139343263373236
+            3061313466636437323466333331313436656634623161630a326139613237633865613062393631
+            30363061343766633838663865333731323038636335306330643730643133343538386636666635
+            3163376164373563320a333662656664383665633565653533616463353162313665636630383663
+            31626463306439346564643566343466363562363065393333633766373862653238653966393532
+            3335346337333266616364386434666439646239333762663465
+
+    region : eu-central-1
+
+  tasks:
+  - name: Create task definition
+    ecs_taskdefinition:
+      aws_access_key : "{{ access_key }}"
+      aws_secret_key : "{{ secret_key }}"
+      region: "{{ region }}"
+      containers:
+      - name: simple-app
+        cpu: 10
+        essential: true
+        image: "httpd:2.4"
+        memory: 300
+        mountPoints:
+        - containerPath: /usr/local/apache2/htdocs
+          sourceVolume: my-vol
+        portMappings:
+        - containerPort: 80
+          hostPort: 80
+      - name: busybox
+        command:
+          - >
+            /bin/sh -c "while true; do echo '<html><head><title>Amazon ECS Sample App</title></head><body><div><h1>Amazon ECS Sample App</h1><h2>Congratulations!
+            </h2><p>Your application is now running on a container in Amazon ECS.</p>' > top; /bin/date > date ; echo '</div></body></html>' > bottom;
+            cat top date bottom > /usr/local/apache2/htdocs/index.html ; sleep 1; done"
+        cpu: 10
+        entryPoint:
+        - sh
+        - "-c"
+        essential: false
+        image: busybox
+        memory: 200
+        volumesFrom:
+        - sourceContainer: simple-app
+      volumes:
+      - name: my-vol
+      family: test-cluster-taskdef
+      state: present
+    register: task_output
+
+  - name: "Configure service"
+    ecs_service:
+      state: present
+      name: console-test-service
+      cluster: new_cluster
+      task_definition: 'new_cluster-task:1'
+      desired_count: 0
+    register: task_output
+
+

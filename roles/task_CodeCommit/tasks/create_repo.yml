@@ -1,0 +1,13 @@
+---
+ - name: "Create Repository"
+   codecommit:
+     repo_name: "{{repo_name}}"
+     repo_disc: "{{repo_disc}}"
+     aws_access_key : "{{ access_key }}"
+     aws_secret_key: "{{ secret_key }}"
+     region : "{{ region }}"
+     create: True
+   register: CodeComm
+   delegate_to: localhost
+
+# - debug: var=CodeComm.meta.repositoryMetadata.cloneUrlHttp

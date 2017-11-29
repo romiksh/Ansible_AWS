@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sudo yum update
+sudo yum install ruby -y
+sudo yum install wget -y
+cd /home/{{app_code_user}}
+wget https://aws-codedeploy-{{region}}.s3.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+

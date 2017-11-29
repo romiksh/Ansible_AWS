@@ -1,0 +1,23 @@
+---
+ - name: "Copy Old Page"
+   fetch:
+     src: /usr/share/httpd/noindex/index.html
+     dest: "{{ path }}/{{ repo_name }}/"
+     flat: yes
+#   git:
+#     repo: "{{ CodeComm.meta.repositoryMetadata.cloneUrlHttp }}"
+#     repo: "https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/MyTestRepo"
+#     dest: "{{ path }}/{{repo_name}}"
+#     refspec: '+refs/pull/*:refs/heads/*'
+#     clone: no
+
+ - name: "Push..."
+   shell: |
+      cd "{{ path }}/{{ repo_name }}"
+      git add .
+      git commit -m "Commit"
+      git push origin master
+      cd ../..
+   args:
+      executable: /bin/bash
+   delegate_to: localhost

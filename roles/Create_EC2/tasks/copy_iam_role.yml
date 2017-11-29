@@ -1,0 +1,23 @@
+---
+- name: "Create IAM Role"
+  iam:
+    iam_type: role
+    aws_access_key : "{{ ec2_access_key }}"
+    aws_secret_key : "{{ ec2_secret_key }}"
+    name: "{{ iam_name }}"
+    state: present
+    trust_policy:
+        Version: '2012-10-17'
+        Statement:
+        - Action: sts:AssumeRole
+          Effect: Allow
+          Principal:
+            Service: ec2.amazonaws.com
+        - Action: s3:*
+          Effect: Allow
+          Principal:
+            Service: "*"
+
+# Pause for 10 sec to add role.
+- pause:
+    seconds: 10

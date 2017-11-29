@@ -1,0 +1,17 @@
+---
+ - name: "Add File"
+   template:
+     src: appspec.j2
+     dest: "{{ path }}/{{ repo_name }}/appspec.yml"
+   delegate_to: localhost
+
+ - name: "Push..."
+   shell: |
+      cd "{{ path }}/{{ repo_name }}"
+      git add .
+      git commit -m "Commit AppSpec"
+      git push origin master
+      cd ../..
+   args:
+      executable: /bin/bash
+   delegate_to: localhost

@@ -1,6 +1,6 @@
 ---
-ec2_access_key : AKIAIZZC7VIZS46XCRSQ
-ec2_secret_key: !vault |
+access_key : AKIAIZZC7VIZS46XCRSQ
+secret_key: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           34613837383865343939333264626462656464643966613035383161663265633139343263373236
           3061313466636437323466333331313436656634623161630a326139613237633865613062393631
@@ -9,12 +9,9 @@ ec2_secret_key: !vault |
           31626463306439346564643566343466363562363065393333633766373862653238653966393532
           3335346337333266616364386434666439646239333762663465
 
-ami_id : ami-d74be5b8
-ins_name : AnsibeAWSinst
 region : eu-central-1
-project_name : "{{ env }}"
-ec2_group: ec2nginx
-hostpath: "./inventory/hosts"
-app_code_user: "ec2-user" # remote user
-hoststring: "ansible_ssh_user=ec2-user"
-iam_name: "EC2_IAM_Role"
+iam_name: "CodeDeploy_IAM_Role"
+ins_name : AnsibeAWSinst
+CodeDeploy_APP: "cdMyApp"
+repo_name: "MyTestRepo"
+s3bucket_name: "shylovmys3bucket"

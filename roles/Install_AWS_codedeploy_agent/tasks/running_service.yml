@@ -1,0 +1,13 @@
+---
+ - name: "Make sure a service is running"
+   systemd:
+     state: started
+     name: "{{service_name}}"
+   become: true
+
+ - name: "Enable service and ensure it is not masked"
+   systemd:
+     name: "{{service_name}}"
+     enabled: yes
+     masked: no
+   become: true

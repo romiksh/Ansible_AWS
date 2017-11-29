@@ -1,0 +1,17 @@
+---
+ - name: "Copy New Page"
+   template:
+     src: index.j2
+     dest: "{{ path }}/{{ repo_name }}/index.html"
+   delegate_to: localhost
+
+ - name: "Push..."
+   shell: |
+      cd "{{ path }}/{{ repo_name }}"
+      git add .
+      git commit -m "Commit New Page"
+      git push origin master
+      cd ../..
+   args:
+      executable: /bin/bash
+   delegate_to: localhost
