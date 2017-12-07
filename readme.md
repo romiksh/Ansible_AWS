@@ -2,6 +2,13 @@ This project is need **ANSIBLE 2.4**
 
 Install: **pip install ansible**
 
+put file **~./.aws-key** with ID and KEY in separated lines
+
 To start:
 
-ANSIBLE_CONFIG=./config/ansible.cfg /usr/local/bin/ansible-playbook -e 'env=AnsibleAWS-web' task_aws.yml
+run:
+
+
+chmod +x **__task_0_Prepare_AWS_KEY.sh**
+
+and after, run required task
