@@ -1,4 +1,3 @@
 ---
-region : eu-central-1
 app_code_user: "ec2-user" # remote user
 service_name: codedeploy-agent

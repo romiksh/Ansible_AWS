@@ -4,9 +4,16 @@
     aws_access_key : "{{ access_key }}"
     aws_secret_key : "{{ secret_key }}"
     name: "{{ project_name }}"
-    key_material: "{{ item }}"
     region: "{{ region }}"
-  with_file: ./keys/aws-ssh-key.pub
+  register: ec2_key
+
+
+- name: "Save private key"
+  copy:
+    content: "{{ ec2_key.key.private_key }}"
+    dest: "./keys/aws-private.pem"
+    mode: 0600
+  when: ec2_key.changed
 
 
 

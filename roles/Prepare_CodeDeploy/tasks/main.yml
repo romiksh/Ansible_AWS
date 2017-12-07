@@ -1,4 +1,6 @@
 ---
+- include_vars: vault.yml
+
 - name: Start IAM Role
   import_tasks: iam_role.yml
 

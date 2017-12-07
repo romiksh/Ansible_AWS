@@ -4,8 +4,8 @@
       key_name : "{{ project_name }}"
       group : "{{ project_name }}_security_group"
       instance_type : t2.micro
-      aws_access_key : "{{ ec2_access_key }}"
-      aws_secret_key : "{{ ec2_secret_key }}"
+      aws_access_key : "{{ access_key }}"
+      aws_secret_key : "{{ secret_key }}"
       image : "{{ ami_id }}"
       region: "{{ region }}"
       instance_profile_name: "{{ iam_name }}"

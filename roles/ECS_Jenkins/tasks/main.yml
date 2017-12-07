@@ -6,7 +6,5 @@
   import_tasks: firewall.yml
 - name: Start KEY SSH
   import_tasks: key_ssh.yml
-- name: Start Setup  ESC1
-  import_tasks: ecs1.yml
-- name: Start Setup  ESC2
-  import_tasks: ecs2.yml
+- name: Start Setup  ESC
+  import_tasks: ecs.yml

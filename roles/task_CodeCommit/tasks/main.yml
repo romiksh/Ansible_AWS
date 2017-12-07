@@ -1,4 +1,7 @@
 ---
+- include_vars: vault.yml
+
+
 - name: Start Create Repository
   import_tasks: create_repo.yml
 - name: Start Configure GIT

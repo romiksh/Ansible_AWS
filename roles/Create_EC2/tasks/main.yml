@@ -1,4 +1,5 @@
 ---
+- include_vars: vault.yml
 - name: Start IAM Role
   import_tasks: iam_role.yml
 - name: Start Firewall
@@ -7,3 +8,6 @@
   import_tasks: key_ec2.yml
 - name: Start Setup  EC2
   import_tasks: setup_ec2.yml
+- debug:
+    msg: "Host is: {{ item.public_ip }}"
+  with_items: "{{ ec2.instances }}"

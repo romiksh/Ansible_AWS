@@ -1,4 +1,5 @@
 ---
+- include_vars: vault.yml
 - name: "Start Install Code Deploy Agent"
   import_tasks: copy_script.yml
 

@@ -1,15 +1,16 @@
 ---
-#ami_id : ami-1f9f1f70 # For ECS
-ami_id : ami-dbfee1bf # For ECS
+ami_id : ami-1f9f1f70 # For ECS
+#ami_id : ami-dbfee1bf # For ECS
 ins_name : "AWS ECS Docker Instance"
 #region : eu-central-1
 #region : eu-west-2
 project_name : "{{ env }}"
 app_code_user: "ec2-user" # remote user
 iam_name: "ECS_IAM_Role"
+#iam_name: "ecsInstanceRole"
 cluster_name: "MyDockerCluster"
-service_name: "MyDockerServiceName"
-task_name: "MyDockerTaskName"
+#service_name: "MyDockerServiceName"
+#task_name: "MyDockerTaskName"
 
 ansible_ssh_private_key_file: "./keys/{{project_name}}_key.pem"
 ansible_ssh_user: "{{ app_code_user }}"

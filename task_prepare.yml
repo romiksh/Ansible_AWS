@@ -1,0 +1,20 @@
+---
+- hosts : 127.0.0.1
+  connection : local
+  gather_facts : False
+  tasks:
+   - name: "Prepare to AWS Connection"
+     aws_read_key:
+       file: ".aws-key"
+       region: "eu-central-1"
+       roles:
+         - "Create_EC2"
+         - "Create_ECS"
+         - "ECS_Jenkins"
+         - "Prepare_CodeDeploy"
+         - "task_CodeCommit"
+         - "Install_AWS_codedeploy_agent"
+   - name: "Generate SSH keys"
+     shell: ssh-keygen -b 2048 -t rsa -f ./keys/aws-ssh-key -q -N ""
+     args:
+       creates: ./keys/aws-ssh-key

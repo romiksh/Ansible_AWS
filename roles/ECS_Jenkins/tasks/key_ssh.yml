@@ -1,0 +1,19 @@
+---
+- name: "Create an EC2 key"
+  ec2_key:
+    aws_access_key : "{{ access_key }}"
+    aws_secret_key : "{{ secret_key }}"
+    name: "{{ project_name }}"
+    region: "{{ region }}"
+  register: ec2_key
+
+
+- name: "Save private key"
+  copy:
+    content: "{{ ec2_key.key.private_key }}"
+    dest: "./keys/{{project_name}}_key.pem"
+    mode: 0600
+  when: ec2_key.changed
+
+
+
